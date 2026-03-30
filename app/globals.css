@@ -3,25 +3,52 @@
 @tailwind utilities;
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+  /* Brand */
+  --primary-base: #63322c;
+  --primary-light: #7d4038;
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  /* Beige */
+  --beige-lighter: #fdf9f6;
+  --beige-base: #e8c5a5;
+
+  /* Text */
+  --text-main-900: #140b0a;
+  --text-sub-500: #585251;
+  --text-white-0: #ffffff;
+  --text-disabled-300: #c4c2c2;
+
+  /* Backgrounds */
+  --bg-white-0: #ffffff;
+  --bg-soft-200: #ecebeb;
+
+  /* Charcoal (dark) */
+  --charcoal-darker: #1e2429;
+  --charcoal-base: #313b44;
+
+  /* Strokes */
+  --stroke-soft-200: #ecebeb;
+  --stroke-strong-900: #140b0a;
+
+  /* Legacy */
+  --background: var(--beige-lighter);
+  --foreground: var(--text-main-900);
 }
 
 body {
   color: var(--foreground);
   background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
 }
 
 @layer utilities {
   .text-balance {
     text-wrap: balance;
+  }
+
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
   }
 }

@@ -9,8 +9,39 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        background: "var(--background)",
-        foreground: "var(--foreground)",
+        primary: {
+          base: "#63322c",
+          light: "#7d4038",
+        },
+        beige: {
+          lighter: "#fdf9f6",
+          base: "#e8c5a5",
+        },
+        text: {
+          900: "#140b0a",
+          500: "#585251",
+          300: "#c4c2c2",
+          white: "#ffffff",
+        },
+        bg: {
+          white: "#ffffff",
+          soft: "#ecebeb",
+        },
+        charcoal: {
+          darker: "#1e2429",
+          base: "#313b44",
+        },
+        stroke: {
+          soft: "#ecebeb",
+          strong: "#140b0a",
+        },
+      },
+      fontFamily: {
+        jost: ["var(--font-jost)", "sans-serif"],
+        inter: ["var(--font-inter)", "sans-serif"],
+      },
+      borderRadius: {
+        pill: "32px",
       },
     },
   },
