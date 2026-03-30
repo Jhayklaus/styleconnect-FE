@@ -4,8 +4,7 @@ const HERO_BG = "/images/hero-bg.png";
 
 export function Hero() {
   return (
-    <section className="relative w-full h-[624px] overflow-hidden">
-      {/* Background image */}
+    <section className="relative w-full h-[400px] md:h-[500px] lg:h-[624px] overflow-hidden">
       <div className="absolute inset-0">
         <Image
           src={HERO_BG}
@@ -16,10 +15,9 @@ export function Hero() {
         />
       </div>
 
-      {/* Left content overlay */}
       <div className="relative h-full flex items-center">
-        <div className="ml-20 flex flex-col gap-10 w-[505px]">
-          <h1 className="font-inter font-medium text-[40px] leading-[48px] tracking-[-0.4px] text-text-900">
+        <div className="mx-4 md:mx-8 lg:ml-20 flex flex-col gap-6 lg:gap-10 w-full md:w-[420px] lg:w-[505px]">
+          <h1 className="font-inter font-medium text-[26px] md:text-[32px] lg:text-[40px] leading-[34px] md:leading-[42px] lg:leading-[48px] tracking-[-0.4px] text-text-900 max-w-[300px] md:max-w-none">
             Shop Bespoke &amp; Ready-made designs from local designers
           </h1>
 
@@ -36,22 +34,20 @@ export function Hero() {
 function AppStoreButton({ store }: { store: "apple" | "google" }) {
   return (
     <button
-      className={`flex items-center gap-2 h-[52px] pl-[14px] pr-5 py-2 rounded-[30px] ${
-        store === "apple"
-          ? "bg-primary-base text-white"
-          : "bg-text-900 text-white"
+      className={`flex items-center gap-2 h-[44px] md:h-[48px] lg:h-[52px] pl-3 lg:pl-[14px] pr-4 lg:pr-5 py-2 rounded-[30px] ${
+        store === "apple" ? "bg-primary-base text-white" : "bg-text-900 text-white"
       }`}
     >
       {store === "apple" ? (
-        <AppleIcon className="w-6 h-6 shrink-0" />
+        <AppleIcon className="w-5 h-5 shrink-0" />
       ) : (
-        <GooglePlayIcon className="w-6 h-6 shrink-0" />
+        <GooglePlayIcon className="w-5 h-5 shrink-0" />
       )}
       <div className="flex flex-col items-start font-jost font-medium">
-        <span className="text-[11px] leading-3 uppercase tracking-[0.22px]">
+        <span className="text-[10px] leading-3 uppercase tracking-[0.22px]">
           {store === "apple" ? "Download on the" : "Get it on"}
         </span>
-        <span className="text-base leading-6 tracking-[-0.176px]">
+        <span className="text-sm lg:text-base leading-5 lg:leading-6 tracking-[-0.176px]">
           {store === "apple" ? "App Store" : "Google Play"}
         </span>
       </div>

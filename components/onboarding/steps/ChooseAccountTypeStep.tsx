@@ -6,9 +6,8 @@ import { Button } from "@/components/ui/Button";
 import { FloatingInput } from "@/components/ui/FloatingInput";
 import { cn } from "@/lib/utils";
 
-// Figma assets — valid for 7 days from fetch
-const IMG_BUY  = "https://www.figma.com/api/mcp/asset/07a28df0-df0a-4dbf-b4d1-e7bb4e352824";
-const IMG_SELL = "https://www.figma.com/api/mcp/asset/c28a78db-2c7f-4aa9-8314-1ba124334c06";
+const IMG_BUY  = "/images/account-type-buyer.png";
+const IMG_SELL = "/images/account-type-seller.png";
 
 const ACCOUNT_TYPES = [
   {

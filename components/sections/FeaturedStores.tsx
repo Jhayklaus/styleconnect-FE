@@ -14,26 +14,17 @@ const STORES = [
 ];
 
 export function FeaturedStores() {
-  const row1 = STORES.slice(0, 4);
-  const row2 = STORES.slice(4, 8);
-
   return (
-    <section className="px-20 pt-12 flex flex-col gap-6">
-      <h2 className="font-inter font-medium text-2xl leading-8 text-text-900">
+    <section className="px-4 md:px-8 lg:px-20 pt-8 md:pt-10 lg:pt-12 pb-12 flex flex-col gap-6">
+      <h2 className="font-inter font-medium text-xl lg:text-2xl leading-8 text-text-900">
         Featured stores
       </h2>
 
-      <div className="flex flex-col gap-4">
-        <div className="flex gap-4">
-          {row1.map((store) => (
-            <StoreCard key={store.id} {...store} />
-          ))}
-        </div>
-        <div className="flex gap-4">
-          {row2.map((store) => (
-            <StoreCard key={store.id} {...store} />
-          ))}
-        </div>
+      {/* Mobile: 2 cols, Tablet: 3 cols, Desktop: 4 cols */}
+      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 md:gap-4">
+        {STORES.map((store) => (
+          <StoreCard key={store.id} {...store} />
+        ))}
       </div>
     </section>
   );

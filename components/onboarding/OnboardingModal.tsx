@@ -29,17 +29,26 @@ export function OnboardingModal({ step }: { step: string }) {
   return (
     /* Overlay */
     <div
-      className="fixed inset-0 z-50 flex items-start justify-center bg-[rgba(2,13,23,0.19)] pt-[60px] px-4 overflow-y-auto"
+      className="fixed inset-0 z-50 bg-[rgba(2,13,23,0.19)] flex items-end md:items-start md:justify-center md:pt-[60px] md:px-4 md:overflow-y-auto"
       onClick={handleClose}
     >
-      {/* Panel — wider on the last step */}
+      {/* Panel */}
       <div
         className={cn(
-          "relative bg-beige-lighter rounded-[20px] shadow-[0px_16px_40px_-8px_rgba(88,92,95,0.16)] w-full mb-8 transition-all duration-300",
-          currentStep === "choose-account-type" ? "max-w-[616px]" : "max-w-[531px]"
+          "relative bg-beige-lighter shadow-[0px_16px_40px_-8px_rgba(88,92,95,0.16)] w-full transition-all duration-300",
+          // Mobile: rounded top corners only, no max-width, sits at bottom
+          "rounded-t-[20px]",
+          // Desktop: fully rounded, constrained width, margin bottom
+          "md:rounded-[20px] md:mb-8",
+          currentStep === "choose-account-type" ? "md:max-w-[616px]" : "md:max-w-[531px]"
         )}
         onClick={(e) => e.stopPropagation()}
       >
+        {/* Drag handle — mobile only */}
+        <div className="md:hidden flex justify-center pt-3 pb-0">
+          <div className="w-10 h-1 bg-stroke-soft rounded-full" />
+        </div>
+
         {/* Modal header */}
         <div className="flex items-center justify-between px-5 py-4 border-b border-stroke-soft">
           {/* Back button (hidden on first step) */}
@@ -81,11 +90,13 @@ export function OnboardingModal({ step }: { step: string }) {
           />
         </div>
 
-        {/* Step content */}
-        {currentStep === "create-account"     && <CreateAccountStep />}
-        {currentStep === "verify-code"        && <VerifyCodeStep />}
-        {currentStep === "about-yourself"     && <AboutYourselfStep />}
-        {currentStep === "choose-account-type" && <ChooseAccountTypeStep />}
+        {/* Step content — scrollable on mobile if content overflows */}
+        <div className="max-h-[80vh] md:max-h-none overflow-y-auto">
+          {currentStep === "create-account"      && <CreateAccountStep />}
+          {currentStep === "verify-code"         && <VerifyCodeStep />}
+          {currentStep === "about-yourself"      && <AboutYourselfStep />}
+          {currentStep === "choose-account-type" && <ChooseAccountTypeStep />}
+        </div>
       </div>
     </div>
   );

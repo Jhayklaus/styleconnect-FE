@@ -7,9 +7,9 @@ const LEGAL_LINKS = ["Privacy", "Terms of Service", "Shipping & Returns"];
 
 export function Footer() {
   return (
-    <footer className="bg-charcoal-darker text-text-white w-full h-[344px] overflow-hidden relative">
+    <footer className="bg-charcoal-darker text-text-white w-full">
       {/* Top section */}
-      <div className="absolute top-20 left-[83px] right-[83px] flex items-start justify-between">
+      <div className="px-4 md:px-8 lg:px-[83px] pt-10 md:pt-14 lg:pt-20 pb-6 flex flex-col md:flex-row items-start justify-between gap-8">
         {/* Logo + nav */}
         <div className="flex flex-col gap-6">
           <Image src={LOGO_SRC} alt="StylesConnect" width={26} height={34} />
@@ -39,19 +39,18 @@ export function Footer() {
       </div>
 
       {/* Divider */}
-      <div className="absolute left-[83px] right-[83px] top-[240px] h-px bg-charcoal-base" />
+      <div className="mx-4 md:mx-8 lg:mx-[83px] h-px bg-charcoal-base" />
 
       {/* Bottom section */}
-      <div className="absolute left-[83px] right-[83px] top-[256px] flex items-center justify-between">
-        {/* Socials + legal */}
-        <div className="flex items-center gap-[113px]">
-          <div className="flex items-center gap-6">
+      <div className="px-4 md:px-8 lg:px-[83px] py-5 flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
+        <div className="flex flex-col md:flex-row items-start md:items-center gap-4 md:gap-8 lg:gap-[113px]">
+          <div className="flex items-center gap-5 md:gap-6">
             <SocialIcon platform="instagram" />
             <SocialIcon platform="twitter" />
             <SocialIcon platform="pinterest" />
             <SocialIcon platform="tiktok" />
           </div>
-          <div className="flex items-center gap-6">
+          <div className="flex flex-wrap items-center gap-4 md:gap-5 lg:gap-6">
             {LEGAL_LINKS.map((link) => (
               <a
                 key={link}
@@ -64,7 +63,6 @@ export function Footer() {
           </div>
         </div>
 
-        {/* Copyright */}
         <p className="font-jost font-medium text-sm leading-5 tracking-[-0.084px] text-text-300 whitespace-nowrap">
           ©Stylesconnect 2026. All rights reserved
         </p>

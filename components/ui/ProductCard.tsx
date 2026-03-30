@@ -21,11 +21,11 @@ export function ProductCard({
 }: ProductCardProps) {
   return (
     <div
-      className="flex flex-col gap-2 w-[308px] cursor-pointer group"
+      className="flex flex-col gap-2 w-[220px] md:w-[308px] shrink-0 cursor-pointer group"
       onClick={onClick}
     >
       {/* Image */}
-      <div className="relative w-full h-[308px] rounded-2xl overflow-hidden bg-bg-soft">
+      <div className="relative w-full h-[220px] md:h-[308px] rounded-2xl overflow-hidden bg-bg-soft">
         <Image
           src={image}
           alt={storeName}

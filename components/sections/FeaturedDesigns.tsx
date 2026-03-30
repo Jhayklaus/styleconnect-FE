@@ -41,8 +41,8 @@ const PRODUCTS = [
 
 export function FeaturedDesigns() {
   return (
-    <section className="px-20 pt-12 flex flex-col gap-6">
-      <h2 className="font-inter font-medium text-2xl leading-8 text-text-900">
+    <section className="px-4 md:px-8 lg:px-20 pt-8 md:pt-10 lg:pt-12 flex flex-col gap-6">
+      <h2 className="font-inter font-medium text-xl lg:text-2xl leading-8 text-text-900">
         Featured designs
       </h2>
 

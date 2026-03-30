@@ -14,17 +14,17 @@ export function StoreCard({ logo, name, rating, reviewCount, onClick }: StoreCar
 
   return (
     <div
-      className="flex items-center gap-0 w-[308px] h-[88px] bg-bg-soft rounded-2xl overflow-hidden cursor-pointer hover:bg-stroke-soft transition-colors"
+      className="flex items-center gap-0 w-full h-[72px] md:h-[88px] bg-bg-soft rounded-2xl overflow-hidden cursor-pointer hover:bg-stroke-soft transition-colors"
       onClick={onClick}
     >
       {/* Logo */}
-      <div className="relative w-[64px] h-[64px] rounded-xl overflow-hidden shrink-0 ml-3">
+      <div className="relative w-[48px] h-[48px] md:w-[64px] md:h-[64px] rounded-xl overflow-hidden shrink-0 ml-3">
         <Image src={logo} alt={name} fill className="object-cover" />
       </div>
 
       {/* Info */}
       <div className="flex flex-col gap-2 ml-3">
-        <p className="font-jost font-medium text-base leading-6 tracking-[-0.176px] text-text-900">
+        <p className="font-jost font-medium text-sm md:text-base leading-5 md:leading-6 tracking-[-0.176px] text-text-900 truncate">
           {name}
         </p>
         <div className="flex items-center gap-0.5">
