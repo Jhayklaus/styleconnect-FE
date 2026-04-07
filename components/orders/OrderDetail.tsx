@@ -201,40 +201,40 @@ function DeliveryIcon({ className }: { className?: string }) {
   );
 }
 
-function MenuIcon({ type, className }: { type: string; className?: string }) {
-  if (type === "person") return (
-    <svg className={className} viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeWidth={1.5} strokeLinecap="round" strokeLinejoin="round">
-      <circle cx="10" cy="6" r="3.5" />
-      <path d="M2.5 18c0-4.14 3.36-7.5 7.5-7.5s7.5 3.36 7.5 7.5" />
-    </svg>
-  );
-  if (type === "order") return (
-    <svg className={className} viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeWidth={1.5} strokeLinecap="round" strokeLinejoin="round">
-      <rect x="3" y="3" width="14" height="14" rx="2" />
-      <path d="M7 7h6M7 10h6M7 13h4" />
-    </svg>
-  );
-  if (type === "location") return (
-    <svg className={className} viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeWidth={1.5} strokeLinecap="round" strokeLinejoin="round">
-      <path d="M10 2C7.24 2 5 4.24 5 7c0 4.25 5 11 5 11s5-6.75 5-11c0-2.76-2.24-5-5-5zm0 6.5A1.5 1.5 0 1110 5a1.5 1.5 0 010 3.5z" />
-    </svg>
-  );
-  if (type === "wallet") return (
-    <svg className={className} viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeWidth={1.5} strokeLinecap="round" strokeLinejoin="round">
-      <rect x="2" y="5" width="16" height="12" rx="2" />
-      <path d="M2 9h16" />
-      <circle cx="14.5" cy="13" r="1" fill="currentColor" />
-    </svg>
-  );
-  if (type === "ruler") return (
-    <svg className={className} viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeWidth={1.5} strokeLinecap="round" strokeLinejoin="round">
-      <rect x="2" y="7" width="16" height="6" rx="1" transform="rotate(-45 10 10)" />
-      <path d="M7 13l1.5-1.5M10 10l1.5-1.5M13 7l1.5-1.5" />
-    </svg>
-  );
-  return (
-    <svg className={className} viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeWidth={1.5} strokeLinecap="round" strokeLinejoin="round">
-      <path d="M3 10h14M10 3l7 7-7 7" />
-    </svg>
-  );
-}
+// function MenuIcon({ type, className }: { type: string; className?: string }) {
+//   if (type === "person") return (
+//     <svg className={className} viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeWidth={1.5} strokeLinecap="round" strokeLinejoin="round">
+//       <circle cx="10" cy="6" r="3.5" />
+//       <path d="M2.5 18c0-4.14 3.36-7.5 7.5-7.5s7.5 3.36 7.5 7.5" />
+//     </svg>
+//   );
+//   if (type === "order") return (
+//     <svg className={className} viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeWidth={1.5} strokeLinecap="round" strokeLinejoin="round">
+//       <rect x="3" y="3" width="14" height="14" rx="2" />
+//       <path d="M7 7h6M7 10h6M7 13h4" />
+//     </svg>
+//   );
+//   if (type === "location") return (
+//     <svg className={className} viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeWidth={1.5} strokeLinecap="round" strokeLinejoin="round">
+//       <path d="M10 2C7.24 2 5 4.24 5 7c0 4.25 5 11 5 11s5-6.75 5-11c0-2.76-2.24-5-5-5zm0 6.5A1.5 1.5 0 1110 5a1.5 1.5 0 010 3.5z" />
+//     </svg>
+//   );
+//   if (type === "wallet") return (
+//     <svg className={className} viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeWidth={1.5} strokeLinecap="round" strokeLinejoin="round">
+//       <rect x="2" y="5" width="16" height="12" rx="2" />
+//       <path d="M2 9h16" />
+//       <circle cx="14.5" cy="13" r="1" fill="currentColor" />
+//     </svg>
+//   );
+//   if (type === "ruler") return (
+//     <svg className={className} viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeWidth={1.5} strokeLinecap="round" strokeLinejoin="round">
+//       <rect x="2" y="7" width="16" height="6" rx="1" transform="rotate(-45 10 10)" />
+//       <path d="M7 13l1.5-1.5M10 10l1.5-1.5M13 7l1.5-1.5" />
+//     </svg>
+//   );
+//   return (
+//     <svg className={className} viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeWidth={1.5} strokeLinecap="round" strokeLinejoin="round">
+//       <path d="M3 10h14M10 3l7 7-7 7" />
+//     </svg>
+//   );
+// }

@@ -13,7 +13,9 @@ type Props = {
   onSelect: (name: string) => void;
 };
 
-export function FilterSearch({ value, onChange, onSelect }: Props) {
+//TODO: reinstate removed onChange
+
+export function FilterSearch({ value, onSelect }: Props) {
   const filtered = value.trim()
     ? SUGGESTIONS.filter(
         (s) =>
