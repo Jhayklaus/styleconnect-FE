@@ -1,28 +1,29 @@
 import Image from "next/image";
+import Link from "next/link";
 
 type ProductCardProps = {
+  id?: string;
   image: string;
   storeName: string;
   description: string;
   rating: number;
   reviewCount: number;
   price: string;
-  onClick?: () => void;
 };
 
 export function ProductCard({
+  id = "1",
   image,
   storeName,
   description,
   rating,
   reviewCount,
   price,
-  onClick,
 }: ProductCardProps) {
   return (
-    <div
-      className="flex flex-col gap-2 w-[220px] md:w-[308px] shrink-0 cursor-pointer group"
-      onClick={onClick}
+    <Link
+      href={`/product/${id}`}
+      className="flex flex-col gap-2 w-[220px] md:w-[308px] shrink-0 group"
     >
       {/* Image */}
       <div className="relative w-full h-[220px] md:h-[308px] rounded-2xl overflow-hidden bg-bg-soft">
@@ -58,7 +59,7 @@ export function ProductCard({
           {price}
         </p>
       </div>
-    </div>
+    </Link>
   );
 }
 

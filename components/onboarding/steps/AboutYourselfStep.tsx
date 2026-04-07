@@ -1,12 +1,16 @@
 "use client";
 
 import { useState } from "react";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { FloatingInput } from "@/components/ui/FloatingInput";
 import { Button } from "@/components/ui/Button";
 
 export function AboutYourselfStep() {
   const router = useRouter();
+  const searchParams = useSearchParams();
+  const returnTo = searchParams.get("returnTo");
+  const returnToParam = returnTo ? `&returnTo=${encodeURIComponent(returnTo)}` : "";
+
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [phone, setPhone] = useState("");
@@ -20,7 +24,7 @@ export function AboutYourselfStep() {
 
   function handleNext() {
     if (!isValid) return;
-    router.push("/?modal=onboarding&step=choose-account-type");
+    router.push(`/?modal=onboarding&step=choose-account-type${returnToParam}`);
   }
 
   return (

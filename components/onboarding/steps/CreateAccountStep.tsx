@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { FloatingInput } from "@/components/ui/FloatingInput";
 import { Button } from "@/components/ui/Button";
 import { cn } from "@/lib/utils";
@@ -16,6 +16,10 @@ const PASSWORD_RULES = [
 
 export function CreateAccountStep() {
   const router = useRouter();
+  const searchParams = useSearchParams();
+  const returnTo = searchParams.get("returnTo");
+  const returnToParam = returnTo ? `&returnTo=${encodeURIComponent(returnTo)}` : "";
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -23,7 +27,7 @@ export function CreateAccountStep() {
 
   function handleNext() {
     if (!allValid) return;
-    router.push("/?modal=onboarding&step=verify-code");
+    router.push(`/?modal=onboarding&step=verify-code${returnToParam}`);
   }
 
   return (

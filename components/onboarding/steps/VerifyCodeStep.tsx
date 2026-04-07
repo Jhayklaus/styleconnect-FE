@@ -1,12 +1,16 @@
 "use client";
 
 import { useState } from "react";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { DigitInput } from "@/components/ui/Input";
 import { Button } from "@/components/ui/Button";
 
 export function VerifyCodeStep() {
   const router = useRouter();
+  const searchParams = useSearchParams();
+  const returnTo = searchParams.get("returnTo");
+  const returnToParam = returnTo ? `&returnTo=${encodeURIComponent(returnTo)}` : "";
+
   const [code, setCode] = useState("");
   const [resent, setResent] = useState(false);
 
@@ -14,7 +18,7 @@ export function VerifyCodeStep() {
 
   function handleNext() {
     if (!isComplete) return;
-    router.push("/?modal=onboarding&step=about-yourself");
+    router.push(`/?modal=onboarding&step=about-yourself${returnToParam}`);
   }
 
   function handleResend() {
