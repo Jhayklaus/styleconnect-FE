@@ -1,0 +1,30 @@
+let's now work on the dashboard for the users, remember we have two types of users, "buyer" and "seller". for now we only have the designs for buyer, so we'll be working on the dashbord for buyers, all design resources will be in /figma-resources folder
+but before that, we already created a page that's part of the dashboard, "orders" we now have to move that into the same folder as these new pages we'll be creating.
+
+here's the flow for each page in the buyer dashbord, we have to use a layout approach since the share one sidebar:
+
+- Profile: no complication , just one screen (for now)
+- Purse credit: no complication , just one screen (for now)
+- my adress: my-address -> search adress modal -> address-details modal -> my-adress(filled)
+- Orders: orders-main -> order-details -> order-timeline (modal)
+
+
+
+
+
+now let's work on the "men" "women" "kids" pages, this page is also going to be similar to search results page. so we might as well reuse the component.
+resources are in "figma-resources/search-result;category-pages"
+
+here's the workflow for it;
+
+category(men/women/kids): category.png
+sub-category (types): select a type in category page -> sub-category(types).png
+search-result: display results based on users search -> search-result & filter.png
+
+filter and sort has 4 screens; filter is a panel modal
+there is the filter panel
+the filter-slider-copllapsed (same screen, different states), 
+filter-seacrh acticve (screen for when user starts using the search bar in the filter)
+and the sort panel, this is a panel different from the filter panel
+
+pay attention to the sub-category and search-result design, that's where we have the filter and sort cta as a floating cta

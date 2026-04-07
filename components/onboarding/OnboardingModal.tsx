@@ -17,10 +17,12 @@ const STEP_LABELS: Record<Step, string> = {
   "choose-account-type": "Account type",
 };
 
-export function OnboardingModal({ step }: { step: string }) {
+export function OnboardingModal({ step, returnTo }: { step: string; returnTo?: string }) {
   const router = useRouter();
   const currentStep = (STEPS.includes(step as Step) ? step : "create-account") as Step;
   const stepIndex = STEPS.indexOf(currentStep);
+
+  const returnToParam = returnTo ? `&returnTo=${encodeURIComponent(returnTo)}` : "";
 
   function handleClose() {
     router.push("/");
@@ -55,7 +57,7 @@ export function OnboardingModal({ step }: { step: string }) {
           <button
             onClick={() =>
               stepIndex > 0
-                ? router.push(`/?modal=onboarding&step=${STEPS[stepIndex - 1]}`)
+                ? router.push(`/?modal=onboarding&step=${STEPS[stepIndex - 1]}${returnToParam}`)
                 : handleClose()
             }
             className="p-0.5 rounded-md hover:bg-bg-soft transition-colors text-text-500 hover:text-text-900"

@@ -1,10 +1,11 @@
 "use client";
 
 import { useState } from "react";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { Button } from "@/components/ui/Button";
 import { FloatingInput } from "@/components/ui/FloatingInput";
 import { cn } from "@/lib/utils";
+import { useAuth } from "@/lib/auth";
 
 const IMG_BUY  = "/images/account-type-buyer.png";
 const IMG_SELL = "/images/account-type-seller.png";
@@ -26,6 +27,10 @@ const ACCOUNT_TYPES = [
 
 export function ChooseAccountTypeStep() {
   const router = useRouter();
+  const searchParams = useSearchParams();
+  const returnTo = searchParams.get("returnTo");
+  const { signIn } = useAuth();
+
   const [selected, setSelected] = useState<string>("buyer");
   const [storeName, setStoreName]   = useState("");
   const [regNumber, setRegNumber]   = useState("");
@@ -34,14 +39,16 @@ export function ChooseAccountTypeStep() {
   const isSeller = selected === "seller";
   const isValid  = !isSeller || storeName.trim().length > 0;
 
+  const returnToParam = returnTo ? `&returnTo=${encodeURIComponent(returnTo)}` : "";
+
   function handleBack() {
-    router.push("/?modal=onboarding&step=about-yourself");
+    router.push(`/?modal=onboarding&step=about-yourself${returnToParam}`);
   }
 
   function handleNext() {
     if (!isValid) return;
-    // TODO: submit registration
-    router.push("/");
+    signIn();
+    router.push(returnTo ?? "/");
   }
 
   return (

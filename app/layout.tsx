@@ -1,6 +1,9 @@
 import type { Metadata } from "next";
 import { Jost, Inter } from "next/font/google";
 import "./globals.css";
+import { AuthProvider } from "@/lib/auth";
+import { DevAuthToggle } from "@/components/auth/DevAuthToggle";
+import { GlobalModals } from "@/components/GlobalModals";
 
 const jost = Jost({
   subsets: ["latin"],
@@ -27,7 +30,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${jost.variable} ${inter.variable} font-jost antialiased`}>
-        {children}
+        <AuthProvider>
+          {children}
+          <GlobalModals />
+          <DevAuthToggle />
+        </AuthProvider>
       </body>
     </html>
   );

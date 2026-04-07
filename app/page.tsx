@@ -4,15 +4,7 @@ import { Hero } from "@/components/sections/Hero";
 import { FeaturedDesigns } from "@/components/sections/FeaturedDesigns";
 import { ShopByCategory } from "@/components/sections/ShopByCategory";
 import { FeaturedStores } from "@/components/sections/FeaturedStores";
-import { OnboardingModal } from "@/components/onboarding/OnboardingModal";
-
-type Props = {
-  searchParams: Promise<{ modal?: string; step?: string }>;
-};
-
-export default async function HomePage({ searchParams }: Props) {
-  const { modal, step } = await searchParams;
-
+export default function HomePage() {
   return (
     <div className="min-h-screen bg-beige-lighter flex flex-col">
       <Header />
@@ -26,10 +18,6 @@ export default async function HomePage({ searchParams }: Props) {
       </main>
 
       <Footer />
-
-      {modal === "onboarding" && (
-        <OnboardingModal step={step ?? "create-account"} />
-      )}
     </div>
   );
 }
