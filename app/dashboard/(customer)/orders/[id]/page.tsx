@@ -1,4 +1,4 @@
-import { OrderDetailPage } from "@/components/dashboard/pages/OrderDetailPage";
+import { OrderDetailPage } from "@/components/dashboard/customer/pages/OrderDetailPage";
 
 export default function Page() {
   return <OrderDetailPage />;

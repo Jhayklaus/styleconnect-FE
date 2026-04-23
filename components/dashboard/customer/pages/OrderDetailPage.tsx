@@ -3,7 +3,7 @@
 import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { OrderTimelineModal } from "@/components/dashboard/modals/OrderTimelineModal";
+import { OrderTimelineModal } from "@/components/dashboard/customer/modals/OrderTimelineModal";
 
 const ORDER = {
   id: "#3454586",

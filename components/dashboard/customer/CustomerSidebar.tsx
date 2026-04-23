@@ -12,7 +12,7 @@ const NAV_ITEMS = [
   { label: "Measurements", href: "/dashboard/measurements", icon: "ruler" },
 ] as const;
 
-export function Sidebar() {
+export function CustomerSidebar() {
   const pathname = usePathname();
   const router = useRouter();
   const { signOut } = useAuth();

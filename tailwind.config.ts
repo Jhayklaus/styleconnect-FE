@@ -12,10 +12,16 @@ const config: Config = {
         primary: {
           base: "#63322c",
           light: "#7d4038",
+          lighter: "#efebeb",
+          darker: "#3c1f1b",
         },
         beige: {
           lighter: "#fdf9f6",
           base: "#e8c5a5",
+        },
+        yellow: {
+          base: "#f2ae40",
+          light: "#fbdfb1",
         },
         text: {
           900: "#140b0a",

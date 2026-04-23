@@ -1,4 +1,4 @@
-import { AddressesPage } from "@/components/dashboard/pages/AddressesPage";
+import { AddressesPage } from "@/components/dashboard/customer/pages/AddressesPage";
 
 export default function Page() {
   return <AddressesPage />;
