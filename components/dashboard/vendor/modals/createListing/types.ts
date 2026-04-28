@@ -14,4 +14,4 @@ export type SizesValue = {
   ageRanges: AgeRange[];
 };
 
-export type Photo = { id: string; cover: boolean; swatch: string };
+export type Photo = { id: string; cover: boolean; url: string; name?: string };

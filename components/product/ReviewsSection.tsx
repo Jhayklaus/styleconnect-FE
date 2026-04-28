@@ -34,17 +34,10 @@ const MAX_COUNT = 180;
 export function ReviewsSection({ productId }: { productId: string }) {
   return (
     <section className="px-4 md:px-8 lg:px-20 py-10 border-t border-stroke-soft">
-      <div className="flex flex-col lg:flex-row gap-8 lg:gap-16">
+      <div className="flex flex-col gap-8 lg:gap-16">
         {/* Left: aggregate rating */}
         <div className="flex flex-col gap-4 lg:w-[280px] shrink-0">
-          <div className="flex items-center gap-2">
-            <StarFilledIcon className="w-4 h-4 text-amber-400" />
-            <p className="font-jost text-sm text-text-500">
-              46 ratings, 5 people who purchased this item
-            </p>
-          </div>
-
-          <h2 className="font-inter font-medium text-2xl text-text-900">
+          <h2 className="font-inter font-medium text-xl text-text-900">
             Item reviews and ratings
           </h2>
 
@@ -53,7 +46,7 @@ export function ReviewsSection({ productId }: { productId: string }) {
             <div className="flex flex-col gap-1 pb-1">
               <div className="flex gap-0.5">
                 {Array.from({ length: 5 }).map((_, i) => (
-                  <StarFilledIcon key={i} className={`w-4 h-4 ${i < 4 ? "text-amber-400" : "text-stroke-soft"}`} />
+                  <StarFilledIcon key={i} className={`w-4 h-4 ${i < 4 ? "text-[#E8C5A5]" : "text-stroke-soft"}`} />
                 ))}
               </div>
               <span className="font-jost text-xs text-text-500">600 ratings</span>
@@ -67,7 +60,7 @@ export function ReviewsSection({ productId }: { productId: string }) {
                 <span className="font-jost text-xs text-text-500 w-3">{stars}</span>
                 <div className="flex-1 h-1.5 bg-stroke-soft rounded-full overflow-hidden">
                   <div
-                    className="h-full bg-amber-400 rounded-full"
+                    className="h-full bg-[#E8C5A5] rounded-full"
                     style={{ width: `${(count / MAX_COUNT) * 100}%` }}
                   />
                 </div>
@@ -84,15 +77,18 @@ export function ReviewsSection({ productId }: { productId: string }) {
                 <div className="relative w-9 h-9 rounded-full overflow-hidden bg-bg-soft shrink-0">
                   <Image src={review.avatar} alt={review.name} fill className="object-cover" />
                 </div>
-                <div className="flex flex-col gap-0.5">
-                  <p className="font-jost font-medium text-sm text-text-900">{review.name}</p>
+                <p className="font-jost font-medium text-sm text-text-900">{review.name}</p>
+
+              </div>
+              <div className="flex flex-col gap-0.5">
+                <div className="flex flex-col">
                   <div className="flex gap-0.5">
                     {Array.from({ length: 5 }).map((_, i) => (
-                      <StarFilledIcon key={i} className={`w-3 h-3 ${i < review.rating ? "text-amber-400" : "text-stroke-soft"}`} />
+                      <StarFilledIcon key={i} className={`w-3 h-3 ${i < review.rating ? "text-[#E8C5A5]" : "text-stroke-soft"}`} />
                     ))}
                   </div>
                 </div>
-                <span className="ml-auto font-jost text-xs text-text-500">{review.date}</span>
+                <span className="font-jost text-xs text-text-500">{review.date}</span>
               </div>
 
               <p className="font-jost text-sm text-text-500 leading-5 line-clamp-3">
@@ -101,22 +97,12 @@ export function ReviewsSection({ productId }: { productId: string }) {
                   read more
                 </button>
               </p>
-
-              {review.images && (
-                <div className="flex gap-2">
-                  {review.images.map((img, i) => (
-                    <div key={i} className="relative w-16 h-16 rounded-xl overflow-hidden bg-bg-soft shrink-0">
-                      <Image src={img} alt="" fill className="object-cover" />
-                    </div>
-                  ))}
-                </div>
-              )}
             </div>
           ))}
 
           <Link
             href={`/product/${productId}?modal=reviews`}
-            className="self-start font-jost font-medium text-sm text-text-900 border border-text-900 rounded-pill px-5 py-2.5 hover:bg-bg-soft transition-colors"
+            className="self-start font-jost font-medium text-sm text-primary-base rounded-pill px-5 py-2.5 bg-primary-lighter hover:bg-bg-soft transition-colors"
           >
             See all reviews
           </Link>

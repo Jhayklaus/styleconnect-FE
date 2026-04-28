@@ -1,7 +1,7 @@
 "use client";
 
-import Link from "next/link";
 import { useState } from "react";
+import { useVendorModals } from "../VendorModalsContext";
 
 type ListingStatus = "active" | "in-review" | "unlisted" | "draft";
 
@@ -118,10 +118,12 @@ function ListingsTable({ listings }: { listings: Listing[] }) {
 
 function ListingRow({ listing }: { listing: Listing }) {
   const status = STATUS_META[listing.status];
+  const { openEditListing } = useVendorModals();
   return (
-    <Link
-      href={`/dashboard/vendor/listings/${listing.id}`}
-      className="grid grid-cols-[80px_1fr] md:grid-cols-[1fr_120px_120px_140px] items-center gap-x-8 gap-y-2 p-4 rounded-2xl hover:bg-white/60 transition-colors"
+    <button
+      type="button"
+      onClick={() => openEditListing(listing.id)}
+      className="grid grid-cols-[80px_1fr] md:grid-cols-[1fr_120px_120px_140px] items-center gap-x-8 gap-y-2 p-4 rounded-2xl hover:bg-white/60 transition-colors text-left w-full"
     >
       <div className="flex items-center gap-4 col-span-2 md:col-span-1 min-w-0">
         <div className="w-20 h-20 rounded-xl bg-primary-lighter shrink-0 overflow-hidden" aria-hidden>
@@ -166,7 +168,7 @@ function ListingRow({ listing }: { listing: Listing }) {
           </svg>
         </div>
       </div>
-    </Link>
+    </button>
   );
 }
 

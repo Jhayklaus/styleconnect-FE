@@ -1,5 +1,5 @@
-import { ComingSoonPage } from "@/components/dashboard/vendor/pages/ComingSoonPage";
+import { VendorMessagesPage } from "@/components/dashboard/vendor/pages/VendorMessagesPage";
 
 export default function Page() {
-  return <ComingSoonPage title="Messages" />;
+  return <VendorMessagesPage />;
 }

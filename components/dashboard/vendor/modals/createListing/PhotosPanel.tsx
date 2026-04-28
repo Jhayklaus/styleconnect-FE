@@ -1,10 +1,10 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { PrimaryButton, SubPanel } from "./SubPanel";
 import type { Photo } from "./types";
 
-const SWATCHES = ["#b9c8d4", "#8ea4b5", "#d4b89a", "#a8907a", "#c3b5a1", "#d9c7b6"];
+const MAX_PHOTOS = 6;
 let nextId = 0;
 
 export function PhotosPanel({
@@ -18,17 +18,34 @@ export function PhotosPanel({
 }) {
   const [photos, setPhotos] = useState<Photo[]>(value);
   const [menuFor, setMenuFor] = useState<string | null>(null);
+  const fileInputRef = useRef<HTMLInputElement>(null);
+  const createdUrls = useRef<string[]>([]);
 
-  function addPhoto() {
-    if (photos.length >= 6) return;
-    const id = `p-${++nextId}`;
-    const swatch = SWATCHES[photos.length % SWATCHES.length];
-    const next: Photo = {
-      id,
-      swatch,
-      cover: photos.length === 0,
+  useEffect(() => {
+    return () => {
+      createdUrls.current.forEach((u) => URL.revokeObjectURL(u));
     };
-    setPhotos([...photos, next]);
+  }, []);
+
+  function handleFiles(files: FileList | null) {
+    if (!files || files.length === 0) return;
+    const remaining = MAX_PHOTOS - photos.length;
+    const accepted = Array.from(files)
+      .filter((f) => f.type.startsWith("image/"))
+      .slice(0, remaining);
+    if (accepted.length === 0) return;
+
+    const additions: Photo[] = accepted.map((file, i) => {
+      const url = URL.createObjectURL(file);
+      createdUrls.current.push(url);
+      return {
+        id: `p-${++nextId}`,
+        url,
+        name: file.name,
+        cover: photos.length === 0 && i === 0,
+      };
+    });
+    setPhotos([...photos, ...additions]);
   }
 
   function removePhoto(id: string) {
@@ -43,7 +60,11 @@ export function PhotosPanel({
     setMenuFor(null);
   }
 
-  const slots = Array.from({ length: 6 });
+  function pick() {
+    fileInputRef.current?.click();
+  }
+
+  const slots = Array.from({ length: MAX_PHOTOS });
 
   return (
     <SubPanel
@@ -51,12 +72,29 @@ export function PhotosPanel({
       onClose={onClose}
       footer={<PrimaryButton onClick={() => onSave(photos)}>Save</PrimaryButton>}
     >
+      <input
+        ref={fileInputRef}
+        type="file"
+        accept="image/*"
+        multiple
+        onChange={(e) => {
+          handleFiles(e.target.files);
+          e.target.value = "";
+        }}
+        className="sr-only"
+      />
+
       <div className="grid grid-cols-3 gap-4">
         {slots.map((_, i) => {
           const photo = photos[i];
           if (photo) {
             return (
-              <div key={photo.id} className="relative aspect-square rounded-2xl overflow-hidden" style={{ background: photo.swatch }}>
+              <div key={photo.id} className="relative aspect-square rounded-2xl overflow-hidden bg-beige-base/40">
+                <img
+                  src={photo.url}
+                  alt={photo.name ?? "Listing photo"}
+                  className="absolute inset-0 w-full h-full object-cover"
+                />
                 {photo.cover && (
                   <span className="absolute top-2 left-2 px-2 py-0.5 rounded-md bg-white/90 font-jost text-xs text-text-900">
                     Cover
@@ -102,7 +140,7 @@ export function PhotosPanel({
             <button
               key={`slot-${i}`}
               type="button"
-              onClick={isNext ? addPhoto : undefined}
+              onClick={isNext ? pick : undefined}
               disabled={!isNext}
               className={`aspect-square rounded-2xl border border-dashed flex flex-col items-center justify-center gap-1 text-text-500 transition-colors ${
                 isNext ? "border-stroke-soft bg-white/40 hover:bg-white/70" : "border-stroke-soft/50 bg-white/20"
