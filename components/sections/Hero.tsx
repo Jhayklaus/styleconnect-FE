@@ -34,9 +34,8 @@ export function Hero() {
 function AppStoreButton({ store }: { store: "apple" | "google" }) {
   return (
     <button
-      className={`flex items-center gap-2 h-[44px] md:h-[48px] lg:h-[52px] pl-3 lg:pl-[14px] pr-4 lg:pr-5 py-2 rounded-[30px] ${
-        store === "apple" ? "bg-primary-base text-white" : "bg-text-900 text-white"
-      }`}
+      className={`flex items-center gap-2 h-[44px] md:h-[48px] lg:h-[52px] pl-3 lg:pl-[14px] pr-4 lg:pr-5 py-2 rounded-[30px] ${store === "apple" ? "bg-primary-base text-white" : "bg-text-900 text-white"
+        }`}
     >
       {store === "apple" ? (
         <AppleIcon className="w-5 h-5 shrink-0" />
@@ -65,11 +64,9 @@ function AppleIcon({ className }: { className?: string }) {
 
 function GooglePlayIcon({ className }: { className?: string }) {
   return (
-    <svg className={className} viewBox="0 0 24 24" fill="none">
-      <path d="M3.18 23.64c.3.16.65.18.97.08L14.88 12 11.1 8.22 3.18 23.64z" fill="#EA4335" />
-      <path d="M20.82 10.26L17.9 8.62l-3.02 3.38 3.02 3.38 2.94-1.64c.84-.47.84-1.81-.02-2.28v-.1z" fill="#FBBC04" />
-      <path d="M3.18.36C2.9.52 2.72.82 2.72 1.2v21.6c0 .38.18.68.46.84L14.88 12 3.18.36z" fill="#4285F4" />
-      <path d="M14.88 12L3.18 23.64c.1.03.2.04.3.04.24 0 .47-.07.67-.2l12.75-7.1L14.88 12z" fill="#34A853" />
+    <svg className={className} width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M12 13.414L14.947 16.361L5.25 21.959C5.01075 22.0989 4.73719 22.1691 4.46016 22.1619C4.18312 22.1546 3.91361 22.0702 3.682 21.918L3.574 21.84L12 13.414ZM3 4.41401L10.586 12L3 19.586V4.41401ZM16.74 8.67401L20.25 10.701C21.25 11.278 21.25 12.721 20.25 13.299L16.74 15.326L13.414 12L16.74 8.67401ZM5.25 2.04101L14.947 7.63901L12 10.586L3.574 2.15901C3.8092 1.9733 4.09487 1.86271 4.39381 1.84167C4.69275 1.82062 4.9911 1.89008 5.25 2.04101Z" fill="white" />
     </svg>
+
   );
 }

@@ -1,5 +1,7 @@
 "use client";
 
+import { useEffect, useRef, useState } from "react";
+
 export function SubPanel({
   title,
   subtitle,
@@ -49,32 +51,90 @@ export function Select({
   onChange,
   options,
   placeholder,
+  disabled,
 }: {
   label?: string;
   value: string | undefined;
   onChange: (v: string) => void;
   options: { value: string; label: string }[];
   placeholder: string;
+  disabled?: boolean;
 }) {
+  const [open, setOpen] = useState(false);
+  const ref = useRef<HTMLDivElement>(null);
+  const selected = options.find((o) => o.value === value);
+
+  useEffect(() => {
+    if (!open) return;
+    function onDocClick(e: MouseEvent) {
+      if (ref.current && !ref.current.contains(e.target as Node)) setOpen(false);
+    }
+    function onKey(e: KeyboardEvent) {
+      if (e.key === "Escape") setOpen(false);
+    }
+    document.addEventListener("mousedown", onDocClick);
+    document.addEventListener("keydown", onKey);
+    return () => {
+      document.removeEventListener("mousedown", onDocClick);
+      document.removeEventListener("keydown", onKey);
+    };
+  }, [open]);
+
   return (
-    <label className="relative flex flex-col gap-1 rounded-2xl border border-stroke-soft bg-white/40 px-4 py-3">
-      {label && <span className="font-jost text-xs text-text-500">{label}</span>}
-      <div className="flex items-center justify-between">
-        <select
-          value={value ?? ""}
-          onChange={(e) => onChange(e.target.value)}
-          className="w-full bg-transparent outline-none font-jost text-base text-text-900 appearance-none pr-6"
+    <div ref={ref} className="relative">
+      <button
+        type="button"
+        disabled={disabled}
+        onClick={() => setOpen((o) => !o)}
+        className="w-full flex flex-col gap-1 rounded-2xl border border-stroke-soft bg-white/40 px-4 py-3 text-left disabled:opacity-50"
+        aria-haspopup="listbox"
+        aria-expanded={open}
+      >
+        {label && <span className="font-jost text-xs text-text-500">{label}</span>}
+        <div className="flex items-center justify-between gap-2">
+          <span className={`font-jost text-base ${selected ? "text-text-900" : "text-text-500"}`}>
+            {selected?.label ?? placeholder}
+          </span>
+          <svg
+            width="20"
+            height="20"
+            viewBox="0 0 20 20"
+            fill="none"
+            aria-hidden
+            className={`text-text-500 shrink-0 transition-transform ${open ? "rotate-180" : ""}`}
+          >
+            <path d="m5 7.5 5 5 5-5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+          </svg>
+        </div>
+      </button>
+
+      {open && options.length > 0 && (
+        <ul
+          role="listbox"
+          className="absolute z-20 left-0 right-0 mt-2 max-h-60 overflow-y-auto rounded-2xl border border-stroke-soft bg-white shadow-lg py-1"
         >
-          <option value="" disabled>{placeholder}</option>
-          {options.map((o) => (
-            <option key={o.value} value={o.value}>{o.label}</option>
-          ))}
-        </select>
-        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden className="text-text-500 shrink-0 absolute right-4 bottom-3 pointer-events-none">
-          <path d="m5 7.5 5 5 5-5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-        </svg>
-      </div>
-    </label>
+          {options.map((o) => {
+            const active = o.value === value;
+            return (
+              <li key={o.value} role="option" aria-selected={active}>
+                <button
+                  type="button"
+                  onClick={() => {
+                    onChange(o.value);
+                    setOpen(false);
+                  }}
+                  className={`w-full text-left px-4 py-2.5 font-jost text-base hover:bg-beige-lighter ${
+                    active ? "text-primary-darker font-medium" : "text-text-900"
+                  }`}
+                >
+                  {o.label}
+                </button>
+              </li>
+            );
+          })}
+        </ul>
+      )}
+    </div>
   );
 }
 

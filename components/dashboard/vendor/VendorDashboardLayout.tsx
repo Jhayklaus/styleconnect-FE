@@ -6,6 +6,10 @@ import { VendorTopBar } from "./VendorTopBar";
 import { useRequireRole } from "../shared/useRequireRole";
 import { VendorModalsProvider } from "./VendorModalsContext";
 import { CreateListingModal } from "./modals/CreateListingModal";
+import { EditListingModal } from "./modals/EditListingModal";
+import { KycModal } from "./modals/KycModal";
+import { WalletHistoryModal } from "./modals/WalletHistoryModal";
+import { SubscriptionModal } from "./modals/SubscriptionModal";
 
 export function VendorDashboardLayout({ children }: { children: React.ReactNode }) {
   const { ready } = useRequireRole("vendor");
@@ -26,6 +30,10 @@ export function VendorDashboardLayout({ children }: { children: React.ReactNode 
       </div>
 
       <CreateListingModal />
+      <EditListingModal />
+      <KycModal />
+      <WalletHistoryModal />
+      <SubscriptionModal />
     </VendorModalsProvider>
   );
 }
